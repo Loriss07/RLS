@@ -27,16 +27,20 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
+import axios from 'axios'
 
     const user = ref(null)
     const passwd = ref(null)
     const router = useRouter();
-function Entra()
+    const $q = useQuasar();
+async function  Entra ()
 {
     let login_user = new XMLHttpRequest();
     let sendUser = new Object({
         username : user.value,
         password : passwd.value,
+        method   : "login"
     })
     let url = UrlEncode(sendUser)
     login_user.open("POST", "http://localhost/php/user.php", true);
@@ -44,8 +48,20 @@ function Entra()
     login_user.onreadystatechange = function() {
     if (this.status == 200) 
     {
-       //router.push('/stream');
-       console.log(login_user.response);
+        $q.notify({
+                type : 'positive',
+                message : login_user.response
+        });
+        console.log(login_user.response);
+        router.push('/stream');
+       
+    }
+    else if (this.status == 401)
+    {
+        $q.notify({
+                type : 'negative',
+                message : login_user.response
+        });
     }
     };
     login_user.send(url);

@@ -23,7 +23,7 @@
                     </template>
                 </q-input>
                 <q-option-group 
-                    v-model="group"
+                    v-model="sex"
                     color="accent"
                     :options="options"
                     inline
@@ -39,6 +39,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useQuasar } from 'quasar';
 
     const name = ref(null)
     const surname = ref(null)
@@ -67,7 +68,8 @@ function Entra()
         gender : sex.value,
         username : user.value,
         password : passwd.value,
-        email : email.value
+        email : email.value,
+        method : "register"
     })
     let url = UrlEncode(new_user)
     create_user.open("POST", "http://localhost/php/user.php", true);
@@ -76,7 +78,7 @@ function Entra()
     if (this.status == 200) 
     {
        
-       router.push('/board');
+       router.push('/login');
        console.log(create_user.response);
     }
     };
