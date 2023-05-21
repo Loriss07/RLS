@@ -4,10 +4,12 @@
     <audio ref="audio" autoplay></audio>
 </template>
 <script setup>
+    import { store } from '../../public/store.js'
     import { ref } from 'vue'
     import Hls from 'hls.js'
     const audio = ref(null)
     var hls = new Hls();
+    console.log(store.role);
     function Play()
     {
         let stream = "http://167.235.151.123/hls/stream.m3u8"

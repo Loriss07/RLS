@@ -1,12 +1,13 @@
 import { reactive } from 'vue'
 import axios  from 'axios'
-import Hls from 'hls.js'
 
 export const store = reactive({
     title: " ",
     artist: " ",
     id: '',
     duration: null,
+    role : null,
+    isAuth : false,
     init() { this.duration = new Date(); },
     getSong() {
 

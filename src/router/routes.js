@@ -1,3 +1,6 @@
+import {createRouter,createWebHistory } from 'vue-router'
+import { store } from '../../public/store.js'
+
 
 const routes = [
   {
@@ -18,7 +21,16 @@ const routes = [
     children: [
       { path: ':id', component: () => import('pages/DashboardPage.vue') },
       { path: 'upload', component: () => import('pages/UploadSong.vue')}
-    ]
+    ],
+    beforeEnter : (to, from) => {
+      if (store.role != "A")
+      {
+        return false
+      }
+      else
+        return to.path
+        
+    },
   },
 
   {
@@ -38,5 +50,7 @@ const routes = [
     component: () => import('pages/ErrorNotFound.vue')
   }
 ]
+
+
 
 export default routes

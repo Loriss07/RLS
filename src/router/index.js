@@ -1,6 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import { store } from '../../public/store.js'
 
 /*
  * If not building with SSR mode, you can
@@ -25,6 +26,19 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+
+  Router.beforeEach(async (to, from) => {
+    if (
+      // make sure the user is authenticated
+      !store.isAuth &&
+      // ❗️ Avoid an infinite redirect
+      to.path !== '/login'
+    ) {
+      // redirect the user to the login page
+      return { path : '/login' }
+    }
+  })
+
 
   return Router
 })

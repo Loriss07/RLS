@@ -28,6 +28,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { store } from '../../public/store.js'
 import axios from 'axios'
 
     const user = ref(null)
@@ -48,13 +49,15 @@ async function  Entra ()
     login_user.onreadystatechange = function() {
     if (this.status == 200) 
     {
+        let data = JSON.parse(login_user.response);
         $q.notify({
                 type : 'positive',
-                message : login_user.response
+                message : data.message
         });
         console.log(login_user.response);
-        //router.push('/stream');
-       
+        store.isAuth = true;
+        store.role = data.role
+        router.push('/stream');
     }
     else if (this.status == 401)
     {
