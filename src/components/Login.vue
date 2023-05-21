@@ -53,7 +53,7 @@ async function  Entra ()
                 message : login_user.response
         });
         console.log(login_user.response);
-        router.push('/stream');
+        //router.push('/stream');
        
     }
     else if (this.status == 401)

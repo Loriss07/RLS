@@ -18,9 +18,9 @@
             >
         </Song>
     </div> 
-    
-        
-    
+
+    <q-btn color="primary" icon="upload" label="Carica Canzone" to="/board/upload" />
+   
 
 </template>
 <script setup>
