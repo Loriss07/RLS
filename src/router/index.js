@@ -27,17 +27,7 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
 
-  Router.beforeEach(async (to, from) => {
-    if (
-      // make sure the user is authenticated
-      !store.isAuth &&
-      // ❗️ Avoid an infinite redirect
-      to.path !== '/login'
-    ) {
-      // redirect the user to the login page
-      return { path : '/login' }
-    }
-  })
+
 
 
   return Router

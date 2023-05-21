@@ -23,7 +23,7 @@ const routes = [
       { path: 'upload', component: () => import('pages/UploadSong.vue')}
     ],
     beforeEnter : (to, from) => {
-      if (store.role != "A")
+      if (store.role != "A" )
       {
         return false
       }
@@ -38,8 +38,16 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/StartStreamPage.vue') },
-    ]
-  
+    ],
+    beforeEnter : (to, from) => {
+      if (!store.isAuth)
+      {
+        return from.path
+      }
+      else
+        return to.path
+        
+    },
   },
 
 

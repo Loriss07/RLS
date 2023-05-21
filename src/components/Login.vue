@@ -44,7 +44,7 @@ async function  Entra ()
         method   : "login"
     })
     let url = UrlEncode(sendUser)
-    login_user.open("POST", "http://localhost/php/user.php", true);
+    login_user.open("POST", "http://167.235.151.123/php/user.php", true);
     login_user.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     login_user.onreadystatechange = function() {
     if (this.status == 200) 
