@@ -27,9 +27,8 @@
         icon="upload_file"
         :done="step > 2"
       >
-            <q-uploader
+      <q-uploader
                         
-                        url="http://localhost/php/addSong.php"
                         :factory="SetName"
                         color="blue"
                         flat
@@ -37,7 +36,6 @@
                         accept="audio/*"
                         :max-files="1"
                         style="max-width: 350px"
-                        method="post"
                         @failed = "errorCode"
                         @uploaded="completed"
                         @rejected = "negate"
@@ -89,6 +87,7 @@
     {
         return new Promise((resolve) => {
           resolve({
+            url : "http:/localhost/php/addSong.php",
             fieldName : 'audio',
             formFields : [{name : 'title', value : songTitle.value }, {name : 'artist' , value : Artist.value}]
           })

@@ -1,6 +1,6 @@
 <template>
     <Stream></Stream>
-    <q-btn v-if="auth == 'A'" color="primary" icon="check" label="OK" to="/board" />
+    <q-btn v-if="auth == 'A'" color="primary" icon="dashboard" label="Dashboard" to="/board" />
 </template>
 
 <script setup>

@@ -20,10 +20,9 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: ':id', component: () => import('pages/DashboardPage.vue') },
-      { path: 'upload', component: () => import('pages/UploadSong.vue')}
     ],
     beforeEnter : (to, from) => {
-      if (store.role != "A" )
+      if (store.role != "A")
       {
         return false
       }
@@ -34,13 +33,23 @@ const routes = [
   },
 
   {
+    path: '/board/upload',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/UploadSong.vue')}
+    ]
+  },
+
+  
+
+  {
     path: '/stream',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/StartStreamPage.vue') },
     ],
     beforeEnter : (to, from) => {
-      if (!store.isAuth)
+      if (!store.isAuth )
       {
         return from.path
       }
